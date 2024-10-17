@@ -128,194 +128,13 @@ def add_contact():
         return menu
     else:
         print("Invalid choice! Please try again.")
-        return
+        return add_contact()
     would_you = input("Would you like to continue adding another contact? (YES/NO): ").upper()
     if would_you == "YES":
         add_contact()
     else:
         print("Returning to the main menu...")
         return menu
-def edit_contact():
-    print("Editing an existing contact...")
-    would_you = input("Would you like to search for the contact first? (YES/NO): ").upper()
-    if would_you == "YES":
-        would_you = input(" Select the option you would like to search by: \n 1. Phone number \n 2. Name \n 3. Email \n enter the number: ")
-        if would_you == "1":
-            phone_number = input("Enter the contact's phone number: ")
-            import re
-            def phone_number_validation(phone_number):
-                phone_number_pattern = re.compile(r"^\d{10}$")
-                return phone_number_pattern.match(phone_number)
-            if phone_number_validation(phone_number):
-                print("Valid phone number!")
-                would_you = input(" Would you like to continue or search by another option? (YES/NO): ").upper()
-                if would_you == "YES":
-                    phone_number = input("Enter the contact's phone number: ")
-                    import re
-                    def phone_number_validation(phone_number):
-                        phone_number_pattern = re.compile(r"^\d{10}$")
-                        return phone_number_pattern.match(phone_number)
-                    if phone_number_validation(phone_number):
-                        print("Valid phone number!")
-                    else:
-                        print("Invalid phone number! Please enter a 10-digit phone number.")
-                        phone_number = input("Enter the contact's phone number: ")
-                if would_you == "NO":
-                    print("Returning to the main menu...")
-                    return menu
-            else:
-                print("Invalid phone number! Please enter a 10-digit phone number.")
-                phone_number = input("Enter the contact's phone number: ")
-            if phone_number in contacts:
-                contact = contacts[phone_number]
-                print("Contact found!")
-                print("Name:", contact["name"])
-                print("Phone number:", contact["phone_number"])
-                print("Email:", contact["email"])
-                print("Additional information:", contact["additional_info"])
-            else:
-                print("Contact not found!")
-                return
-        elif would_you == "2":
-            name = input("Enter the contact's name: ")
-            import re
-            def name_validation(name):
-                name_pattern = re.compile(r"^[a-zA-Z ]+$")
-                return name_pattern.match(name)
-            if name_validation(name):
-                print("Valid name!")
-                would_you = input(" Would you like to continue or search by another option? (YES/NO): ").upper()
-                if would_you == "YES":
-                    name = input("Enter the contact's name: ")
-                    import re
-                    def name_validation(name):
-                        name_pattern = re.compile(r"^[a-zA-Z ]+$")
-                        return name_pattern.match(name)
-                    if name_validation(name):
-                        print("Valid name!")
-                    else:
-                        print("Invalid name! Please enter a valid name.")
-                        name = input("Enter the contact's name: ")
-                if would_you == "NO":
-                    print("Returning to the main menu...")
-                    return menu
-            else:
-                print("Invalid name! Please enter a valid name.")
-                name = input("Enter the contact's name: ")
-            for phone_number, contact in contacts.items():
-                if contact["name"] == name:
-                    print("Contact found!")
-                    print("Name:", contact["name"])
-                    print("Phone number:", contact["phone_number"])
-                    print("Email:", contact["email"])
-                    print("Additional information:", contact["additional_info"])
-                    break
-            else:
-                print("Contact not found!")
-                return
-        elif would_you == "3":
-            email = input("Enter the contact's email address: ")
-            import re
-            def email_validation(email):
-                email_pattern = re.compile(r"^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$")
-                return email_pattern.match(email)
-            if email_validation(email):
-                print("Valid email address!")
-                would_you = input(" Would you like to continue or search by another option? (YES/NO): ").upper()
-                if would_you == "YES":
-                    email = input("Enter the contact's email address: ")
-                    import re
-                    def email_validation(email):
-                        email_pattern = re.compile(r"^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$")
-                        return email_pattern.match(email)
-                    if email_validation(email):
-                        print("Valid email address!")
-                    else:
-                        print("Invalid email address! Please enter a valid email address.")
-                        email = input("Enter the contact's email address: ")
-                if would_you == "NO":
-                    print("Returning to the main menu...")
-                    return menu
-            else:
-                print("Invalid email address! Please enter a valid email address.")
-                email = input("Enter the contact's email address: ")
-            for phone_number, contact in contacts.items():
-                if contact["email"] == email:
-                    print("Contact found!")
-                    print("Name:", contact["name"])
-                    print("Phone number:", contact["phone_number"])
-                    print("Email:", contact["email"])
-                    print("Additional information:", contact["additional_info"])
-                    break
-            else:
-                print("Contact not found!")
-                return
-    elif would_you == "NO":
-        input_any = input("Enter any information you have about the contact: ")
-        for phone_number, name, email, additional_info in contacts.items():
-            if input_any in contacts:
-                contact = contacts[input_any]
-                print("Contact found!")
-                print("Name:", contact["name"])
-                print("Phone number:", contact["phone_number"])
-                print("Email:", contact["email"])
-                print("Additional information:", contact["additional_info"])
-                would_you = input("Are you sure you want to edit this contact? (YES/NO): ").upper()
-                if would_you == "YES":
-                    name = input("Enter the contact's name: ")
-                    import re
-                    def name_validation(name):
-                        name_pattern = re.compile(r"^[a-zA-Z ]+$")
-                        return name_pattern.match(name)
-                    if name_validation(name):
-                        print("Valid name!")
-                    else:
-                        print("Invalid name! Please enter a valid name.")
-                        name = input("Enter the contact's name: ")
-                    phone_number = input("Enter the contact's phone number: ")
-                    import re
-                    def phone_number_validation(phone_number):
-                        phone_number_pattern = re.compile(r"^\d{10}$")
-                        return phone_number_pattern.match(phone_number)
-                    if phone_number_validation(phone_number):
-                        print("Valid phone number!")
-                    else:
-                        print("Invalid phone number! Please enter a 10-digit phone number.")
-                        phone_number = input("Enter the contact's phone number: ")
-                    email = input("Enter the contact's email address: ")
-                    import re
-                    def email_validation(email):
-                        email_pattern = re.compile(r"^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$")
-                        return email_pattern.match(email)
-                    if email_validation(email):
-                        print("Valid email address!")
-                    else:
-                        print("Invalid email address! Please enter a valid email address.")
-                        email = input("Enter the contact's email address: ")
-                    additional_info = input("Enter any additional information: ")
-                    contact = {
-                        "name": name,
-                        "phone_number": phone_number,
-                        "email": email,
-                        "additional_info": additional_info
-                    }
-                    contacts[phone_number] = contact
-                    print("Contact edited successfully!")
-                else:
-                    print("Returning to the main menu...")
-                    return menu
-            else:
-                print("Contact not found!")
-                return
-    else:
-        print("Invalid choice! Please try again.")
-        return
-    would_you = input("Would you like to continue editing another contact? (YES/NO): ").upper()
-    if would_you == "YES":
-        edit_contact()
-    else:
-        print("Returning to the main menu...")
-        return menu              
 def delete_contact():
     print("Deleting a contact...")
     do_you = input("Would you like to search for the contact first? (YES/NO): ").upper()
@@ -489,9 +308,89 @@ def delete_contact():
     else:
         print("Returning to the main menu...")
         return menu
-    
-import os
-contacts = {}        
+
+def edit_contact():
+    print("Editing an existing contact...")
+    print("Do you want to display all contacts first?")
+    do_you = input("YES/NO: ").upper()
+    if do_you == "YES":
+        for phone_number, contact in contacts.items():
+            print("Phone number:", phone_number)
+            print("Name:", contact["name"])
+            print("Phone number:", contact["phone_number"])
+            print("Email:", contact["email"])
+            print("Additional information:", contact["additional_info"])
+            print()
+    elif do_you == "NO":
+        print("Press enter to continue...")
+    else:
+        print("Invalid choice! Please try again.")
+        return
+    do_you = input(" Input the name or number of the contact you would like to edit: ")
+    if do_you in contacts:
+        contact = contacts[do_you]
+        print("Contact found!")
+        print("Name:", contact["name"])
+        print("Phone number:", contact["phone_number"])
+        print("Email:", contact["email"])
+        print("Additional information:", contact["additional_info"])
+        do_you = input("Would you like to edit this contact? (YES/NO): ").upper()
+        if do_you == "YES":
+            name = input("Enter the contact's name: ")
+            import re
+            def name_validation(name):
+                name_pattern = re.compile(r"^[a-zA-Z ]+$")
+                return name_pattern.match(name)
+            if name_validation(name):
+                print("Valid name!")
+            else:
+                print("Invalid name! Please enter a valid name.")
+                name = input("Enter the contact's name: ")
+            phone_number = input("Enter the contact's phone number: ")
+            import re
+            def phone_number_validation(phone_number):
+                phone_number_pattern = re.compile(r"^\d{10}$")
+                return phone_number_pattern.match(phone_number)
+            if phone_number_validation(phone_number):
+                print("Valid phone number!")
+            else:
+                print("Invalid phone number! Please enter a 10-digit phone number.")
+                phone_number = input("Enter the contact's phone number: ")
+            email = input("Enter the contact's email address: ")
+            import re
+            def email_validation(email):
+                email_pattern = re.compile(r"^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$")
+                return email_pattern.match(email)
+            if email_validation(email):
+                print("Valid email address!")
+            else:
+                print("Invalid email address! Please enter a valid email address.")
+                email = input("Enter the contact's email address: ")
+            additional_info = input("Enter any additional information: ")
+            contact = {
+                "name": name,
+                "phone_number": phone_number,
+                "email": email,
+                "additional_info": additional_info
+            }
+            contacts[phone_number] = contact
+            print("Contact edited successfully!")
+            would_you = input("Would you like to continue editing another contact? (YES/NO): ").upper()
+            if would_you == "YES":
+                edit_contact()
+            else:
+                print("Returning to the main menu...")
+                return menu
+        elif do_you == "NO":
+            print("Returning to the main menu...")
+            return menu
+        else:
+            print("Invalid choice! Please try again.")
+            return
+    else:
+        print("Contact not found!")
+        return edit_contact()
+        
 def search_contact():
     print("Searching for a contact...")
     to_do = input(" Select the option you would like to search by: \n 1. Phone number \n 2. Name \n 3. Email \n enter the number: ")
@@ -778,7 +677,7 @@ def quit():
         print("Returning to the main menu...")
         return menu
     
-
+contacts = {}
 
 if __name__ == "__main__":
     while True:
@@ -812,4 +711,3 @@ if __name__ == "__main__":
             print("Invalid choice! Please try again.")
             continue
         print()
-        
